@@ -17,7 +17,7 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 | 6   | Seguimiento activo y recordatorios                      | ✅     | main | 2026-11-17 |
 | 7   | Caja y cobros                                           | ✅     | main | 2026-11-17 |
 | 8   | Tablero y reportes                                      | ✅     | main | 2026-11-17 |
-| 9   | Configuración, pulido y guion de demo                   | ⬜     |      |            |
+| 9   | Configuración, pulido y guion de demo                   | ✅     | main | 2026-11-18 |
 
 ---
 
@@ -263,15 +263,27 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 **Tareas**
 
-- [ ] Configuración: datos de la clínica, médicos y horarios, y servicios y precios.
-- [ ] Revisión responsiva (tableta y celular) y de accesibilidad básica.
-- [ ] Modo oscuro (opcional).
-- [ ] Carga diferida por módulo y revisión de rendimiento.
-- [ ] Pruebas e2e con Playwright del flujo "agendar → atender → cobrar" (opcional, en CI).
-- [ ] `docs/GUION-DEMO.md`: guion de 5 a 7 minutos para presentar MediCore en la negociación.
-- [ ] README final con capturas de pantalla.
+- [x] Configuración: datos de la clínica, médicos y horarios, y servicios y precios.
+- [x] Revisión responsiva (tableta y celular) y de accesibilidad básica.
+- [ ] Modo oscuro (opcional). No se hizo; ver notas.
+- [x] Carga diferida por módulo y revisión de rendimiento.
+- [ ] Pruebas e2e con Playwright del flujo "agendar → atender → cobrar" (opcional, en CI). Sustituido por pruebas de integración; ver notas.
+- [x] `docs/GUION-DEMO.md`: guion de 5 a 7 minutos para presentar MediCore en la negociación.
+- [x] README final con capturas de pantalla.
 
 **Criterios de aceptación:** demo estable en GitHub Pages, sin errores en consola y con guion de presentación listo.
+
+**Notas y desviaciones**
+
+- **Configuración** (administración): datos de la clínica, horarios de cada médico (validan que la salida sea posterior a la entrada y la agenda los respeta) y catálogo de servicios con duración y precio.
+- **Revisión responsiva** en 390 px, 768 px y 1366 px: se corrigió el desbordamiento de tablas en celular (`min-w-0` en tarjetas), las pestañas se acomodan en varias líneas y las tablas anchas se desplazan dentro de su tarjeta.
+- **Accesibilidad básica:** etiquetas en todos los campos, foco visible, roles ARIA en buscadores y radios, gráficas con vista de tabla, estados con texto además de color.
+- **Carga diferida** por módulo (React.lazy) y de Faker y jsPDF bajo demanda.
+- **Sin errores en consola:** se revisaron 15 rutas con los 3 roles en Edge sin errores de la app.
+- **Modo oscuro:** no se hizo (era opcional); los colores ya están centralizados en `src/index.css` para agregarlo después.
+- **Playwright:** no se agregó (era opcional). En su lugar, `src/test/flujo.test.ts` prueba "agendar → atender → cobrar" sobre la capa de servicios y `src/features/caja/caja.test.tsx` prueba el cobro desde la interfaz.
+- **Datos vigentes cada día:** al abrir el demo otro día, si no hay cambios del usuario los datos se regeneran para hoy; si los hay, todas las fechas se recorren en semanas completas.
+- `docs/GUION-DEMO.md` con el guion de 5 a 7 minutos y preguntas frecuentes. README final con capturas en `docs/capturas/`.
 
 ---
 
@@ -279,3 +291,5 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 - 2026-11-17: Plan inicial creado (9 etapas).
 - 2026-11-17: Etapa 1 terminada; se adopta el sistema visual nuevo (turquesa/azul marino, Inter).
+- 2026-11-17: El equipo decide trabajar directo en `main`, sin ramas ni PR.
+- 2026-11-18: Etapas 2 a 9 terminadas. Pendientes opcionales: modo oscuro y Playwright.

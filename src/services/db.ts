@@ -1,4 +1,5 @@
 import { crearAlmacen } from '@/lib/storage'
+import { ajustarAHoy } from '@/mocks/actualizarFechas'
 import { VERSION_ESQUEMA } from '@/mocks/version'
 import type { BaseDatos } from '@/types'
 
@@ -23,7 +24,9 @@ export async function obtenerBD(): Promise<BaseDatos> {
   if (!cargando) {
     cargando = (async () => {
       const guardada = almacen.leer()
-      bd = guardada ?? (await generar())
+      const vigente = guardada && ajustarAHoy(guardada)
+      if (vigente && vigente !== guardada) almacen.guardar(vigente)
+      bd = vigente ?? (await generar())
       cargando = null
       return bd
     })()

@@ -4,7 +4,6 @@ import { Navigate, Route, Routes } from 'react-router'
 import { Acerca } from '@/app/pages/Acerca'
 import { Bienvenida } from '@/app/pages/Bienvenida'
 import { NoEncontrado } from '@/app/pages/NoEncontrado'
-import { Proximamente } from '@/app/pages/Proximamente'
 import { AppLayout } from '@/components/layout/AppLayout'
 import { Cargando } from '@/components/layout/Estados'
 import { Login } from '@/features/auth/Login'
@@ -28,6 +27,9 @@ const Tablero = lazy(() =>
 )
 const Reportes = lazy(() =>
   import('@/features/reportes/Reportes').then((m) => ({ default: m.Reportes })),
+)
+const Configuracion = lazy(() =>
+  import('@/features/configuracion/Configuracion').then((m) => ({ default: m.Configuracion })),
 )
 const PaginaPaciente = lazy(() =>
   import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
@@ -121,7 +123,7 @@ export function AppRoutes() {
           path="/configuracion"
           element={
             <Modulo modulo="configuracion">
-              <Proximamente titulo="Configuración" />
+              <Configuracion />
             </Modulo>
           }
         />

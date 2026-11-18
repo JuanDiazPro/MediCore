@@ -25,9 +25,9 @@ Documentos fuente (en `docs/`):
 
 ## Stack
 
-TypeScript · React · Vite · Tailwind CSS · shadcn/ui (Radix) · Lucide · React Router (**HashRouter**) · TanStack Query · Zustand · React Hook Form + Zod · @faker-js/faker (es_MX) · FullCalendar · Recharts · date-fns (locale `es`) · jsPDF · Vitest + Testing Library · Playwright (opcional) · ESLint + Prettier · GitHub Actions → GitHub Pages.
+TypeScript · React · Vite · Tailwind CSS · shadcn/ui (Radix) · Lucide · React Router (**HashRouter**) · TanStack Query · Zustand · React Hook Form + Zod · @faker-js/faker (es_MX) · FullCalendar (**v6**) · Recharts · date-fns (locale `es`) · jsPDF · Vitest + Testing Library · Playwright (opcional) · ESLint + Prettier · GitHub Actions → GitHub Pages.
 
-Usa la versión estable vigente de cada paquete. No agregues dependencias fuera de esta lista sin justificarlo en el PR.
+Usa la versión estable vigente de cada paquete (excepción: FullCalendar se fija en la v6 porque la v7 cambió su API). Dependencias de apoyo ya aceptadas: `@hookform/resolvers`, `@radix-ui/*`, `class-variance-authority`, `clsx`, `tailwind-merge` y `tw-animate-css`. No agregues otras sin justificarlo en el commit.
 
 ## Comandos (a partir de la Etapa 1)
 
@@ -81,17 +81,23 @@ src/
   - Mucho espacio en blanco, formas redondeadas y responsivo en computadora, tableta y celular.
 - Commits con Conventional Commits: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `test:`, `chore:`, `ci:`.
 
-## Flujo de trabajo por etapas
+## Flujo de trabajo
 
-El proyecto se construye por etapas definidas en **`docs/ETAPAS.md`**. Cuando el usuario diga **"haz la etapa N"**:
+Las 9 etapas de `docs/ETAPAS.md` ya están terminadas. Para cualquier cambio nuevo:
 
-1. Lee `docs/ETAPAS.md` (la etapa N y el estado de las anteriores) y este archivo.
-2. Crea la rama `etapa-N-<slug>` desde `main` actualizado.
-3. Implementa **solo** el alcance de la etapa N. Si algo de una etapa futura bloquea el trabajo, hazlo mínimo y anótalo.
-4. Verifica: `npm run lint`, `npm run test -- --run` y `npm run build` deben pasar. Revisa la app en el navegador cuando aplique.
-5. Actualiza `docs/ETAPAS.md`: marca las casillas, cambia el estado en la tabla resumen y agrega notas o desviaciones.
-6. Haz commit, push de la rama y abre un PR hacia `main` con un resumen de la etapa.
-7. Si todo pasa, haz merge a `main` (eso publica el demo) y confirma que el workflow de despliegue terminó bien.
-8. Informa al usuario qué se hizo, el enlace del PR y del demo, y cualquier pendiente.
+1. Lee este archivo y la sección relevante de `docs/ETAPAS.md`.
+2. Trabaja **directo en `main`** (decisión del equipo: sin ramas ni PR).
+3. Respeta las reglas no negociables y el sistema visual; las pantallas solo usan la capa de servicios.
+4. Verifica: `npm run lint`, `npm run format:check`, `npm run test -- --run` y `npm run build` deben pasar. Revisa la app en el navegador (computadora y celular).
+5. Si cambias el modelo de datos o la semilla, sube `VERSION_ESQUEMA` en `src/mocks/version.ts`.
+6. Commit con Conventional Commits, push a `main` y confirma que el workflow de despliegue terminó bien.
+7. Registra en `docs/ETAPAS.md` (bitácora) cualquier cambio de alcance.
 
-No avances a la siguiente etapa sin que el usuario lo pida.
+## Mapa rápido del código
+
+- Rutas: `src/app/AppRoutes.tsx` (carga diferida por módulo). Ficha del paciente con pestañas de otros módulos: `src/app/pages/PaginaPaciente.tsx`.
+- Permisos por rol: `src/features/auth/permisos.ts`. Sesión: `src/features/auth/sesion.ts` (Zustand).
+- Servicios: `src/services/index.ts` es el único punto a cambiar para conectar un backend.
+- Lógica pura y probada: `src/lib/` (agenda, caja, seguimiento, métricas, PDF, formato).
+- Datos semilla: `src/mocks/generador.ts` (determinista; se ajusta a la fecha de hoy al abrir con `actualizarFechas.ts`).
+- Componentes base: `src/components/ui/` (shadcn) y `src/components/layout/`. Gráficas: `src/components/charts/Graficas.tsx`.
