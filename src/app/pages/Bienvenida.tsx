@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   CalendarDays,
   ClipboardList,
   ExternalLink,
@@ -6,6 +7,8 @@ import {
   type LucideIcon,
   Wallet,
 } from 'lucide-react'
+
+import { Link } from 'react-router'
 
 import { IconCircle } from '@/components/layout/IconCircle'
 import { Logo } from '@/components/layout/Logo'
@@ -58,8 +61,11 @@ export function Bienvenida() {
             usa solo datos ficticios para mostrar cómo funciona.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" disabled title="Disponible en la siguiente etapa">
-              Entrar al demo
+            <Button asChild size="lg">
+              <Link to="/login">
+                Entrar al demo
+                <ArrowRight />
+              </Link>
             </Button>
             <Button asChild size="lg" variant="secondary">
               <a href={REPO_URL} target="_blank" rel="noreferrer">
@@ -68,7 +74,7 @@ export function Bienvenida() {
             </Button>
           </div>
           <p className="text-sm text-muted-foreground">
-            El acceso por rol (administración, médico y recepción) llega en la siguiente etapa.
+            Entra como administración, médico o recepción. Contraseña demo: demo123.
           </p>
         </div>
 

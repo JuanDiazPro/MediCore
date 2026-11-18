@@ -5,7 +5,7 @@ export function DemoBanner() {
   return (
     <div
       role="note"
-      className="flex items-center justify-center gap-2 bg-navy px-4 py-2 text-center text-xs font-medium text-white sm:text-sm"
+      className="flex h-9 items-center justify-center gap-2 bg-navy px-4 text-center text-xs font-medium text-white sm:text-sm"
     >
       <FlaskConical aria-hidden className="size-4 shrink-0 text-brand" strokeWidth={1.75} />
       <span>Versión demostrativa: datos ficticios</span>

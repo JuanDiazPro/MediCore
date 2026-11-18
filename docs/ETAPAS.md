@@ -1,4 +1,4 @@
-# Etapas de construcción: prototipo MediCore
+| 2 undefined| ✅ | main | 2026-11-17 |# Etapas de construcción: prototipo MediCore
 
 Plan de trabajo para construir el prototipo demostrativo de MediCore. Se basa en el _Documento Técnico del Prototipo_ (`docs/`).
 Cada etapa termina con un PR integrado a `main` y el demo publicado en GitHub Pages.
@@ -64,24 +64,35 @@ Cada etapa termina con un PR integrado a `main` y el demo publicado en GitHub Pa
 
 **Tareas**
 
-- [ ] Tipos del modelo de datos en `src/types/`: Clinica, Usuario, Medico, Paciente, Cita, Consulta, Receta, PlanSeguimiento, Pago y Servicio.
-- [ ] Generador de datos semilla con Faker `es_MX` y **semilla fija**: 1 clínica, 6 médicos, unos 250 pacientes, 6 meses de citas, consultas y pagos, y catálogos de servicios y CIE-10 de ejemplo.
-- [ ] Utilidad de almacenamiento (`lib/storage`) sobre `localStorage`, con versión de esquema e inicialización con la semilla.
-- [ ] Capa de servicios: contrato (`*.service.ts`) e implementación simulada (`*.mock.ts`) con latencia de 300 a 800 ms, para cada entidad.
-- [ ] Configurar TanStack Query (QueryClientProvider) y hooks base.
-- [ ] Store de sesión con Zustand: usuario, rol activo, iniciar y cerrar sesión.
-- [ ] Inicio de sesión simulado con los 3 usuarios demo (`admin@`, `medico@` y `recepcion@demo.medicore`, contraseña `demo123`) y botones de acceso rápido por rol.
-- [ ] Layout principal: barra lateral con menú según el rol, encabezado con usuario y rol, franja de demo y diseño responsivo.
-- [ ] Rutas protegidas y páginas vacías ("Próximamente") para cada módulo.
-- [ ] Botón **"Reiniciar demo"** que borra `localStorage` y regenera los datos semilla.
-- [ ] Pantalla "Acerca de" con el aviso de demo y el enlace al repositorio.
-- [ ] Pruebas: generador determinista (misma semilla, mismos datos), servicios mock y permisos de menú por rol.
+- [x] Tipos del modelo de datos en `src/types/`: Clinica, Usuario, Medico, Paciente, Cita, Consulta, Receta, PlanSeguimiento, Pago y Servicio.
+- [x] Generador de datos semilla con Faker `es_MX` y **semilla fija**: 1 clínica, 6 médicos, unos 250 pacientes, 6 meses de citas, consultas y pagos, y catálogos de servicios y CIE-10 de ejemplo.
+- [x] Utilidad de almacenamiento (`lib/storage`) sobre `localStorage`, con versión de esquema e inicialización con la semilla.
+- [x] Capa de servicios: contrato (`*.service.ts`) e implementación simulada (`*.mock.ts`) con latencia de 300 a 800 ms, para cada entidad.
+- [x] Configurar TanStack Query (QueryClientProvider) y hooks base.
+- [x] Store de sesión con Zustand: usuario, rol activo, iniciar y cerrar sesión.
+- [x] Inicio de sesión simulado con los 3 usuarios demo (`admin@`, `medico@` y `recepcion@demo.medicore`, contraseña `demo123`) y botones de acceso rápido por rol.
+- [x] Layout principal: barra lateral con menú según el rol, encabezado con usuario y rol, franja de demo y diseño responsivo.
+- [x] Rutas protegidas y páginas vacías ("Próximamente") para cada módulo.
+- [x] Botón **"Reiniciar demo"** que borra `localStorage` y regenera los datos semilla.
+- [x] Pantalla "Acerca de" con el aviso de demo y el enlace al repositorio.
+- [x] Pruebas: generador determinista (misma semilla, mismos datos), servicios mock y permisos de menú por rol.
 
 **Criterios de aceptación**
 
 - Se puede entrar con cada rol y el menú cambia según el rol.
 - Los datos son los mismos en cualquier navegador nuevo y persisten al recargar.
 - "Reiniciar demo" regresa al estado inicial.
+
+**Notas y desviaciones**
+
+- Sin ramas ni PR por decisión del equipo: se trabaja directo sobre `main`.
+- Datos semilla deterministas: misma semilla **y misma fecha de referencia** producen los mismos datos. La fecha de referencia es el día en que el navegador abre el demo por primera vez, para que siempre haya citas "de hoy" y "de mañana".
+- Volumen: 6 médicos, 250 pacientes, ~3,400 citas, ~2,500 consultas y pagos (~3 MB en localStorage). Si el navegador no permite guardar, el demo funciona en memoria.
+- El generador (Faker) se carga de forma diferida: solo se descarga la primera vez.
+- Escenario de demo: los recordatorios se activaron hace 90 días; la inasistencia baja de ~22 % a ~8 %.
+- Los servicios de todas las entidades (pacientes, citas, consultas, seguimiento, pagos y clínica) quedaron listos desde esta etapa; las reglas de empalme, horario, vencimientos y corte viven en `src/lib/`.
+- Toasts propios (sin dependencia extra) y componentes Dialog, Tabs, Label, Select y Textarea al estilo shadcn/ui.
+- Pruebas: en Node 22+ el `localStorage` nativo tapa al de jsdom; `src/test/setup.ts` usa uno en memoria.
 
 ---
 
