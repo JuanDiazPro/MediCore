@@ -4,10 +4,10 @@ import { Vacio } from '@/components/layout/Estados'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Card } from '@/components/ui/card'
 
-export function Proximamente({ titulo }: { titulo: string }) {
+export function Proximamente({ titulo }: { titulo?: string }) {
   return (
     <>
-      <PageHeader titulo={titulo} />
+      {titulo && <PageHeader titulo={titulo} />}
       <Card>
         <Vacio
           icono={Hammer}

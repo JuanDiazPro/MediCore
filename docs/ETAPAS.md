@@ -1,23 +1,23 @@
-| 2 undefined| ✅ | main | 2026-11-17 |# Etapas de construcción: prototipo MediCore
+# Etapas de construcción: prototipo MediCore
 
 Plan de trabajo para construir el prototipo demostrativo de MediCore. Se basa en el _Documento Técnico del Prototipo_ (`docs/`).
-Cada etapa termina con un PR integrado a `main` y el demo publicado en GitHub Pages.
+Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) y el demo se publica en GitHub Pages.
 
 **Estados:** ⬜ Pendiente · 🟨 En progreso · ✅ Terminada
 
 ## Resumen
 
-| #   | Etapa                                                   | Estado | PR  | Fecha      |
-| --- | ------------------------------------------------------- | ------ | --- | ---------- |
-| 1   | Base del proyecto y despliegue                          | ✅     | #1  | 2026-11-17 |
-| 2   | Fundamentos: layout, roles, datos simulados y servicios | ⬜     |     |            |
-| 3   | Pacientes                                               | ⬜     |     |            |
-| 4   | Agenda de citas                                         | ⬜     |     |            |
-| 5   | Expediente clínico y consulta                           | ⬜     |     |            |
-| 6   | Seguimiento activo y recordatorios                      | ⬜     |     |            |
-| 7   | Caja y cobros                                           | ⬜     |     |            |
-| 8   | Tablero y reportes                                      | ⬜     |     |            |
-| 9   | Configuración, pulido y guion de demo                   | ⬜     |     |            |
+| #   | Etapa                                                   | Estado | PR   | Fecha      |
+| --- | ------------------------------------------------------- | ------ | ---- | ---------- |
+| 1   | Base del proyecto y despliegue                          | ✅     | #1   | 2026-11-17 |
+| 2   | Fundamentos: layout, roles, datos simulados y servicios | ✅     | main | 2026-11-17 |
+| 3   | Pacientes                                               | ✅     | main | 2026-11-17 |
+| 4   | Agenda de citas                                         | ⬜     |      |            |
+| 5   | Expediente clínico y consulta                           | ⬜     |      |            |
+| 6   | Seguimiento activo y recordatorios                      | ⬜     |      |            |
+| 7   | Caja y cobros                                           | ⬜     |      |            |
+| 8   | Tablero y reportes                                      | ⬜     |      |            |
+| 9   | Configuración, pulido y guion de demo                   | ⬜     |      |            |
 
 ---
 
@@ -102,13 +102,21 @@ Cada etapa termina con un PR integrado a `main` y el demo publicado en GitHub Pa
 
 **Tareas**
 
-- [ ] Lista de pacientes con búsqueda (nombre o teléfono), filtros (médico tratante, último contacto) y paginación.
-- [ ] Alta y edición de paciente con React Hook Form + Zod (validación de teléfono, correo y fecha de nacimiento).
-- [ ] Ficha del paciente: datos generales, alergias, tipo de sangre, próximas citas y pestañas reservadas para expediente, pagos y seguimiento.
-- [ ] Estados de carga, vacío y error en todas las vistas.
-- [ ] Pruebas del formulario y de la búsqueda.
+- [x] Lista de pacientes con búsqueda (nombre o teléfono), filtros (médico tratante, último contacto) y paginación.
+- [x] Alta y edición de paciente con React Hook Form + Zod (validación de teléfono, correo y fecha de nacimiento).
+- [x] Ficha del paciente: datos generales, alergias, tipo de sangre, próximas citas y pestañas reservadas para expediente, pagos y seguimiento.
+- [x] Estados de carga, vacío y error en todas las vistas.
+- [x] Pruebas del formulario y de la búsqueda.
 
 **Criterios de aceptación:** recepción y administración pueden crear, buscar y editar pacientes; el médico ve solo a sus pacientes.
+
+**Notas y desviaciones**
+
+- Lista con búsqueda por nombre o teléfono (con retraso de 300 ms), filtros por médico tratante y último contacto, y paginación de 12. Tabla en computadora y tarjetas en celular.
+- Formulario de alta y edición con React Hook Form + Zod (`features/pacientes/schemas.ts`): teléfono de 10 dígitos, correo opcional, fecha no futura.
+- Ficha con datos generales, alergias, tipo de sangre, próximas citas y pestañas de expediente, pagos y seguimiento (se llenan en las etapas 5 a 7).
+- El médico solo ve a sus pacientes (lista filtrada y ficha protegida); solo administración y recepción dan de alta o editan.
+- Los apellidos de Faker salían compuestos; ahora cada persona tiene dos apellidos simples. Se subió la versión del esquema a 2 para regenerar datos guardados.
 
 ---
 

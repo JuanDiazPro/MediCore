@@ -12,7 +12,12 @@ import type { Modulo } from '@/features/auth/permisos'
 import { RutaProtegida } from '@/features/auth/RutaProtegida'
 
 // Carga diferida por módulo: cada pantalla se descarga solo cuando se visita.
-void lazy
+const PacientesLista = lazy(() =>
+  import('@/features/pacientes/PacientesLista').then((m) => ({ default: m.PacientesLista })),
+)
+const PaginaPaciente = lazy(() =>
+  import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
+)
 
 function Modulo({ modulo, children }: { modulo: Modulo; children: ReactNode }) {
   return (
@@ -51,10 +56,18 @@ export function AppRoutes() {
           }
         />
         <Route
-          path="/pacientes/*"
+          path="/pacientes"
           element={
             <Modulo modulo="pacientes">
-              <Proximamente titulo="Pacientes" />
+              <PacientesLista />
+            </Modulo>
+          }
+        />
+        <Route
+          path="/pacientes/:id"
+          element={
+            <Modulo modulo="pacientes">
+              <PaginaPaciente />
             </Modulo>
           }
         />

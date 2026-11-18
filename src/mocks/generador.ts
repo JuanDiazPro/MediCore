@@ -114,6 +114,12 @@ export function generarBaseDatos(opciones: OpcionesGenerador = {}): BaseDatos {
   const hoy = startOfDay(opciones.hoy ?? new Date())
   const faker = new Faker({ locale: [es_MX, es, base] })
   faker.seed(opciones.semilla ?? SEMILLA)
+  /** Un solo apellido simple (Faker a veces devuelve apellidos compuestos). */
+  const apellido = () =>
+    faker.person
+      .lastName()
+      .split(' ')
+      .filter((w) => !/^(de|del|la|las|los|y)$/i.test(w))[0]
   const totalPacientes = opciones.pacientes ?? 250
 
   const inicioHistoria = subDays(hoy, DIAS_HISTORIA)
@@ -134,7 +140,7 @@ export function generarBaseDatos(opciones: OpcionesGenerador = {}): BaseDatos {
   // Médicos
   const medicos: Medico[] = ESPECIALIDADES.map((esp, i) => {
     const sexo = faker.helpers.arrayElement(['female', 'male'] as const)
-    const nombre = `${faker.person.firstName(sexo)} ${faker.person.lastName()}`
+    const nombre = `${faker.person.firstName(sexo)} ${apellido()} ${apellido()}`
     return {
       id: `med-${pad(i + 1, 2)}`,
       nombre: `${sexo === 'female' ? 'Dra.' : 'Dr.'} ${nombre}`,
@@ -158,7 +164,7 @@ export function generarBaseDatos(opciones: OpcionesGenerador = {}): BaseDatos {
   const pacientes: Paciente[] = Array.from({ length: totalPacientes }, (_, i) => {
     const sexo: Sexo = faker.helpers.arrayElement(['F', 'M'])
     const nombre = faker.person.firstName(sexo === 'F' ? 'female' : 'male')
-    const apellidos = `${faker.person.lastName()} ${faker.person.lastName()}`
+    const apellidos = `${apellido()} ${apellido()}`
     // 60 % ya eran pacientes antes del periodo; 40 % llegan durante el periodo (pacientes nuevos).
     const antiguo = i < totalPacientes * 0.6
     const creadoEn = antiguo
