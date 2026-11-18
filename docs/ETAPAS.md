@@ -15,7 +15,7 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 | 4   | Agenda de citas                                         | ✅     | main | 2026-11-17 |
 | 5   | Expediente clínico y consulta                           | ✅     | main | 2026-11-17 |
 | 6   | Seguimiento activo y recordatorios                      | ✅     | main | 2026-11-17 |
-| 7   | Caja y cobros                                           | ⬜     |      |            |
+| 7   | Caja y cobros                                           | ✅     | main | 2026-11-17 |
 | 8   | Tablero y reportes                                      | ⬜     |      |            |
 | 9   | Configuración, pulido y guion de demo                   | ⬜     |      |            |
 
@@ -210,13 +210,22 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 **Tareas**
 
-- [ ] Registrar cobro ligado a una cita o un servicio, con método (efectivo, tarjeta o transferencia).
-- [ ] Recibo simulado en PDF con folio y marca DEMO.
-- [ ] Corte de caja diario por método de pago.
-- [ ] Historial de pagos por paciente (pestaña en la ficha).
-- [ ] Pruebas de los cálculos del corte.
+- [x] Registrar cobro ligado a una cita o un servicio, con método (efectivo, tarjeta o transferencia).
+- [x] Recibo simulado en PDF con folio y marca DEMO.
+- [x] Corte de caja diario por método de pago.
+- [x] Historial de pagos por paciente (pestaña en la ficha).
+- [x] Pruebas de los cálculos del corte.
 
 **Criterios de aceptación:** recepción cobra una consulta, descarga el recibo y el corte del día cuadra.
+
+**Notas y desviaciones**
+
+- Módulo **Caja** por día: indicadores (total, número de cobros, efectivo, tarjeta y transferencia), lista "Por cobrar" (pacientes que asistieron y no han pagado), corte de caja por método y tabla de cobros.
+- Registro de cobro ligado a la cita o libre (paciente, servicio, médico, monto con precio de lista y método). Valida que una cita no se cobre dos veces y asigna folio consecutivo (`MC-000123`).
+- Al cobrar se descarga el **recibo en PDF** con folio y marca de agua DEMO (aclara que no es CFDI). El corte del día también se descarga en PDF.
+- Pestaña "Pagos" en la ficha del paciente con su historial y total.
+- Escenario de demo: algunas consultas de hoy quedan "por cobrar" en los datos semilla (esquema v3).
+- Los totales se calculan en centavos para que el corte cuadre sin errores de redondeo.
 
 ---
 

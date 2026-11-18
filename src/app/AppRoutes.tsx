@@ -22,6 +22,7 @@ const Consulta = lazy(() =>
 const Seguimiento = lazy(() =>
   import('@/features/seguimiento/Seguimiento').then((m) => ({ default: m.Seguimiento })),
 )
+const Caja = lazy(() => import('@/features/caja/Caja').then((m) => ({ default: m.Caja })))
 const PaginaPaciente = lazy(() =>
   import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
 )
@@ -98,7 +99,7 @@ export function AppRoutes() {
           path="/caja"
           element={
             <Modulo modulo="caja">
-              <Proximamente titulo="Caja" />
+              <Caja />
             </Modulo>
           }
         />

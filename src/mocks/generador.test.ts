@@ -27,7 +27,8 @@ describe('generador de datos semilla', () => {
     ])
     expect(bd.citas.length).toBeGreaterThan(1500)
     expect(bd.consultas.length).toBeGreaterThan(500)
-    expect(bd.pagos.length).toBe(bd.consultas.length)
+    expect(bd.pagos.length).toBeLessThanOrEqual(bd.consultas.length)
+    expect(bd.pagos.length).toBeGreaterThan(bd.consultas.length - 40)
   })
 
   it('solo usa correos ficticios @demo.medicore', () => {

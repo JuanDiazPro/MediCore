@@ -326,21 +326,24 @@ export function generarBaseDatos(opciones: OpcionesGenerador = {}): BaseDatos {
                     }
                   : undefined,
               })
-              pagos.push({
-                id: `pag-${pad(pagos.length + 1, 5)}`,
-                folio: `MC-${pad(folio++, 6)}`,
-                pacienteId: paciente.id,
-                citaId: cita.id,
-                servicioId,
-                medicoId: medico.id,
-                monto: servicioPorId.get(servicioId)!.precio,
-                metodo: faker.helpers.weightedArrayElement<MetodoPago>([
-                  { value: 'efectivo', weight: 4 },
-                  { value: 'tarjeta', weight: 4 },
-                  { value: 'transferencia', weight: 2 },
-                ]),
-                fecha: cita.fin,
-              })
+              // Escenario de caja: algunas consultas de hoy quedan "por cobrar".
+              const porCobrar = d === DIAS_HISTORIA && faker.number.float() < 0.4
+              if (!porCobrar)
+                pagos.push({
+                  id: `pag-${pad(pagos.length + 1, 5)}`,
+                  folio: `MC-${pad(folio++, 6)}`,
+                  pacienteId: paciente.id,
+                  citaId: cita.id,
+                  servicioId,
+                  medicoId: medico.id,
+                  monto: servicioPorId.get(servicioId)!.precio,
+                  metodo: faker.helpers.weightedArrayElement<MetodoPago>([
+                    { value: 'efectivo', weight: 4 },
+                    { value: 'tarjeta', weight: 4 },
+                    { value: 'transferencia', weight: 2 },
+                  ]),
+                  fecha: cita.fin,
+                })
             }
           }
           minuto += duracion
