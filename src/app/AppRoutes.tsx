@@ -23,6 +23,12 @@ const Seguimiento = lazy(() =>
   import('@/features/seguimiento/Seguimiento').then((m) => ({ default: m.Seguimiento })),
 )
 const Caja = lazy(() => import('@/features/caja/Caja').then((m) => ({ default: m.Caja })))
+const Tablero = lazy(() =>
+  import('@/features/dashboard/Tablero').then((m) => ({ default: m.Tablero })),
+)
+const Reportes = lazy(() =>
+  import('@/features/reportes/Reportes').then((m) => ({ default: m.Reportes })),
+)
 const PaginaPaciente = lazy(() =>
   import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
 )
@@ -51,7 +57,7 @@ export function AppRoutes() {
           path="/tablero"
           element={
             <Modulo modulo="tablero">
-              <Proximamente titulo="Tablero" />
+              <Tablero />
             </Modulo>
           }
         />
@@ -107,7 +113,7 @@ export function AppRoutes() {
           path="/reportes"
           element={
             <Modulo modulo="reportes">
-              <Proximamente titulo="Reportes" />
+              <Reportes />
             </Modulo>
           }
         />

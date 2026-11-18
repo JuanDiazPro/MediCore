@@ -16,7 +16,7 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 | 5   | Expediente clínico y consulta                           | ✅     | main | 2026-11-17 |
 | 6   | Seguimiento activo y recordatorios                      | ✅     | main | 2026-11-17 |
 | 7   | Caja y cobros                                           | ✅     | main | 2026-11-17 |
-| 8   | Tablero y reportes                                      | ⬜     |      |            |
+| 8   | Tablero y reportes                                      | ✅     | main | 2026-11-17 |
 | 9   | Configuración, pulido y guion de demo                   | ⬜     |      |            |
 
 ---
@@ -235,14 +235,25 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 **Tareas**
 
-- [ ] Tablero: citas de hoy, ocupación, tasa de inasistencia, ingresos del mes y pacientes nuevos contra recurrentes.
-- [ ] Gráficas con Recharts: ingresos mensuales, inasistencias por mes y citas por médico.
-- [ ] Reportes con filtros de fechas: ingresos por médico o servicio y evolución de inasistencias.
-- [ ] Escenario de demo en los datos semilla: las inasistencias bajan después de activar los recordatorios.
-- [ ] Tablero según el rol: completo para administración, personal para el médico y operativo para recepción.
-- [ ] Pruebas de las funciones de métricas.
+- [x] Tablero: citas de hoy, ocupación, tasa de inasistencia, ingresos del mes y pacientes nuevos contra recurrentes.
+- [x] Gráficas con Recharts: ingresos mensuales, inasistencias por mes y citas por médico.
+- [x] Reportes con filtros de fechas: ingresos por médico o servicio y evolución de inasistencias.
+- [x] Escenario de demo en los datos semilla: las inasistencias bajan después de activar los recordatorios.
+- [x] Tablero según el rol: completo para administración, personal para el médico y operativo para recepción.
+- [x] Pruebas de las funciones de métricas.
 
 **Criterios de aceptación:** el tablero cuenta la historia "MediCore reduce inasistencias e incrementa ingresos".
+
+**Notas y desviaciones**
+
+- **Tablero según el rol:**
+  - Administración: citas de hoy, ocupación de la semana, inasistencia de los últimos 30 días (contra la tasa antes de los recordatorios) e ingresos del mes; franja con el impacto de los recordatorios; gráficas de ingresos mensuales, inasistencias por mes (con la marca "Recordatorios activados"), citas por médico y pacientes nuevos contra recurrentes.
+  - Médico: sus citas de hoy con botón "Atender", consultas del mes, su inasistencia, controles vencidos y sus citas por mes.
+  - Recepción: citas de hoy, por confirmar, por cobrar, recordatorios pendientes de mañana y accesos rápidos.
+- **Reportes** (administración) con rango de fechas y atajos (este mes, 3 y 6 meses): ingresos por médico y por servicio, evolución de inasistencias y exportación a PDF con marca DEMO.
+- Métricas como funciones puras y probadas en `src/lib/metricas.ts`.
+- Gráficas con Recharts siguiendo la guía de visualización: una sola serie en turquesa oscuro `#0D9488`; la gráfica de dos series usa `#0D9488` y `#7C6FD6`, pareja validada con el script de la guía (contraste y separación para daltonismo). Cada gráfica tiene tooltip y vista de tabla. Animaciones desactivadas.
+- Escenario: las citas de mañana quedan sin recordatorio para poder mostrar el envío masivo (esquema v4).
 
 ---
 

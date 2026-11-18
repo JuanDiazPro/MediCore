@@ -6,6 +6,13 @@ const numero = new Intl.NumberFormat('es-MX')
 const porcentaje = new Intl.NumberFormat('es-MX', { style: 'percent', maximumFractionDigits: 1 })
 
 export const formatearMoneda = (monto: number) => moneda.format(monto)
+const monedaEntera = new Intl.NumberFormat('es-MX', {
+  style: 'currency',
+  currency: 'MXN',
+  maximumFractionDigits: 0,
+})
+/** Sin centavos, para indicadores grandes. */
+export const formatearMonedaEntera = (monto: number) => monedaEntera.format(monto)
 export const formatearNumero = (n: number) => numero.format(n)
 export const formatearPorcentaje = (fraccion: number) => porcentaje.format(fraccion)
 

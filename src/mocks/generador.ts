@@ -276,7 +276,7 @@ export function generarBaseDatos(opciones: OpcionesGenerador = {}): BaseDatos {
                 faker.number.float() < (diasFaltan <= 2 ? 0.7 : 0.35) ? 'confirmada' : 'pendiente'
             }
             const recordatorioEnviado =
-              despuesRecordatorios && (pasada || d - DIAS_HISTORIA <= 1) && estado !== 'cancelada'
+              despuesRecordatorios && (pasada || d - DIAS_HISTORIA <= 0) && estado !== 'cancelada'
 
             const cita: Cita = {
               id: `cit-${pad(citas.length + 1, 5)}`,
