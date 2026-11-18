@@ -15,6 +15,7 @@ import { RutaProtegida } from '@/features/auth/RutaProtegida'
 const PacientesLista = lazy(() =>
   import('@/features/pacientes/PacientesLista').then((m) => ({ default: m.PacientesLista })),
 )
+const Agenda = lazy(() => import('@/features/agenda/Agenda').then((m) => ({ default: m.Agenda })))
 const PaginaPaciente = lazy(() =>
   import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
 )
@@ -51,7 +52,7 @@ export function AppRoutes() {
           path="/agenda"
           element={
             <Modulo modulo="agenda">
-              <Proximamente titulo="Agenda" />
+              <Agenda />
             </Modulo>
           }
         />

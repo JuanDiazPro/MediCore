@@ -12,7 +12,7 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 | 1   | Base del proyecto y despliegue                          | ✅     | #1   | 2026-11-17 |
 | 2   | Fundamentos: layout, roles, datos simulados y servicios | ✅     | main | 2026-11-17 |
 | 3   | Pacientes                                               | ✅     | main | 2026-11-17 |
-| 4   | Agenda de citas                                         | ⬜     |      |            |
+| 4   | Agenda de citas                                         | ✅     | main | 2026-11-17 |
 | 5   | Expediente clínico y consulta                           | ⬜     |      |            |
 | 6   | Seguimiento activo y recordatorios                      | ⬜     |      |            |
 | 7   | Caja y cobros                                           | ⬜     |      |            |
@@ -126,16 +126,25 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 **Tareas**
 
-- [ ] Integrar FullCalendar en español con vistas de día, semana y mes y color por médico.
-- [ ] Filtro por médico (el médico ve solo su agenda por defecto).
-- [ ] Crear cita (paciente, médico, servicio, fecha y hora) validando empalmes y horario del médico.
-- [ ] Mover cita arrastrando y soltando; reprogramar y cancelar.
-- [ ] Estados de cita: pendiente, confirmada, asistió y no asistió, con colores e iconos.
-- [ ] Panel lateral con el detalle de la cita y acciones rápidas (confirmar, marcar asistencia, ir al expediente).
-- [ ] Indicador "recordatorio enviado" (simulado).
-- [ ] Pruebas de la lógica de empalmes y cambios de estado.
+- [x] Integrar FullCalendar en español con vistas de día, semana y mes y color por médico.
+- [x] Filtro por médico (el médico ve solo su agenda por defecto).
+- [x] Crear cita (paciente, médico, servicio, fecha y hora) validando empalmes y horario del médico.
+- [x] Mover cita arrastrando y soltando; reprogramar y cancelar.
+- [x] Estados de cita: pendiente, confirmada, asistió y no asistió, con colores e iconos.
+- [x] Panel lateral con el detalle de la cita y acciones rápidas (confirmar, marcar asistencia, ir al expediente).
+- [x] Indicador "recordatorio enviado" (simulado).
+- [x] Pruebas de la lógica de empalmes y cambios de estado.
 
 **Criterios de aceptación:** se puede agendar, mover, cancelar y cambiar el estado de citas, y los cambios persisten.
+
+**Notas y desviaciones**
+
+- FullCalendar **v6** (6.1.x): la v7 cambió su API y empaqueta los plugins de otra forma; se fijó la v6, estable y documentada.
+- Vistas día, semana y mes en español; en celular abre en vista de día. Cada cita lleva el color del médico, un punto con el color de su estado y una campana si ya se envió el recordatorio.
+- Con "Todos los médicos" las citas se acomodan lado a lado (máximo 2 por franja y "+N más") para que la semana sea legible.
+- Crear cita desde el botón o seleccionando un horario libre; se valida empalme y horario del médico (también al arrastrar: si no es válido, la cita regresa a su lugar y se avisa).
+- Panel lateral con detalle y acciones: confirmar, asistió, no asistió, reprogramar, cancelar o reactivar, enviar recordatorio (simulado), atender consulta e ir al expediente.
+- Selector de pacientes con búsqueda (`PacienteSelector`), reutilizable en otros módulos. Desde la ficha del paciente, "Agendar" abre la agenda con el paciente ya elegido.
 
 ---
 

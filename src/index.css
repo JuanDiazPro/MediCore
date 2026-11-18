@@ -106,3 +106,105 @@
     @apply font-bold tracking-tight text-navy;
   }
 }
+
+/* FullCalendar adaptado al sistema visual de MediCore */
+.agenda {
+  --fc-border-color: #e2e8f0;
+  --fc-page-bg-color: #ffffff;
+  --fc-neutral-bg-color: #f8fafc;
+  --fc-today-bg-color: rgb(204 251 241 / 0.35);
+  --fc-now-indicator-color: #ef4444;
+  --fc-non-business-color: rgb(241 245 249 / 0.7);
+  --fc-highlight-color: rgb(20 184 166 / 0.15);
+  --fc-button-bg-color: #ffffff;
+  --fc-button-border-color: #14b8a6;
+  --fc-button-text-color: #0d9488;
+  --fc-button-hover-bg-color: #ccfbf1;
+  --fc-button-hover-border-color: #0d9488;
+  --fc-button-active-bg-color: #14b8a6;
+  --fc-button-active-border-color: #14b8a6;
+  font-size: 13px;
+}
+.agenda .fc .fc-toolbar {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.agenda .fc .fc-toolbar-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.agenda .fc .fc-toolbar-title::first-letter {
+  text-transform: uppercase;
+}
+.agenda .fc .fc-timegrid-more-link {
+  border-radius: 0.5rem;
+  background: var(--brand-soft);
+  color: var(--brand-hover);
+  font-weight: 600;
+}
+.agenda .fc .fc-button {
+  border-width: 2px;
+  border-radius: 9999px;
+  padding: 0.35rem 0.9rem;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: none !important;
+}
+.agenda .fc .fc-button-group > .fc-button {
+  border-radius: 0;
+}
+.agenda .fc .fc-button-group > .fc-button:first-child {
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+.agenda .fc .fc-button-group > .fc-button:last-child {
+  border-top-right-radius: 9999px;
+  border-bottom-right-radius: 9999px;
+}
+.agenda .fc .fc-button-primary:not(:disabled).fc-button-active,
+.agenda .fc .fc-button-primary:not(:disabled):active {
+  color: #ffffff;
+}
+.agenda .fc .fc-scrollgrid {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.agenda .fc .fc-col-header-cell-cushion {
+  padding: 0.5rem 0.25rem;
+  font-weight: 600;
+  color: var(--navy);
+  text-transform: capitalize;
+}
+.agenda .fc .fc-timegrid-slot-label-cushion,
+.agenda .fc .fc-daygrid-day-number {
+  color: var(--muted-foreground);
+}
+.agenda .fc .fc-timegrid-slot {
+  height: 2.75rem;
+}
+.agenda .fc-event {
+  border-width: 0 0 0 3px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.agenda .fc-daygrid-event {
+  border-width: 0 0 0 3px;
+}
+.agenda .fc-event.cita-cancelada {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.agenda .fc-event.cita-no_asistio {
+  opacity: 0.75;
+}
+@media (max-width: 640px) {
+  .agenda .fc .fc-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .agenda .fc .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+  }
+}
