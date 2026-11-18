@@ -13,7 +13,7 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 | 2   | Fundamentos: layout, roles, datos simulados y servicios | ✅     | main | 2026-11-17 |
 | 3   | Pacientes                                               | ✅     | main | 2026-11-17 |
 | 4   | Agenda de citas                                         | ✅     | main | 2026-11-17 |
-| 5   | Expediente clínico y consulta                           | ⬜     |      |            |
+| 5   | Expediente clínico y consulta                           | ✅     | main | 2026-11-17 |
 | 6   | Seguimiento activo y recordatorios                      | ⬜     |      |            |
 | 7   | Caja y cobros                                           | ⬜     |      |            |
 | 8   | Tablero y reportes                                      | ⬜     |      |            |
@@ -154,17 +154,25 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 **Tareas**
 
-- [ ] Historia clínica: antecedentes heredofamiliares, personales patológicos y no patológicos y alergias.
-- [ ] Línea de tiempo del paciente: consultas, citas, pagos y seguimientos.
-- [ ] Flujo de consulta desde una cita: signos vitales y nota SOAP (subjetivo, objetivo, análisis y plan).
-- [ ] Diagnósticos con buscador del catálogo CIE-10 de ejemplo.
-- [ ] Receta: lista de medicamentos (nombre, dosis, frecuencia, duración) e indicaciones.
-- [ ] Generar **receta en PDF** con jsPDF, con marca de agua "DEMO, sin validez".
-- [ ] Al cerrar la consulta, la cita pasa a "asistió" y se puede crear un plan de seguimiento.
-- [ ] Bitácora simple de cambios (quién y cuándo) mostrada en el expediente.
-- [ ] Pruebas del esquema SOAP y de la generación de la receta.
+- [x] Historia clínica: antecedentes heredofamiliares, personales patológicos y no patológicos y alergias.
+- [x] Línea de tiempo del paciente: consultas, citas, pagos y seguimientos.
+- [x] Flujo de consulta desde una cita: signos vitales y nota SOAP (subjetivo, objetivo, análisis y plan).
+- [x] Diagnósticos con buscador del catálogo CIE-10 de ejemplo.
+- [x] Receta: lista de medicamentos (nombre, dosis, frecuencia, duración) e indicaciones.
+- [x] Generar **receta en PDF** con jsPDF, con marca de agua "DEMO, sin validez".
+- [x] Al cerrar la consulta, la cita pasa a "asistió" y se puede crear un plan de seguimiento.
+- [x] Bitácora simple de cambios (quién y cuándo) mostrada en el expediente.
+- [x] Pruebas del esquema SOAP y de la generación de la receta.
 
 **Criterios de aceptación:** el médico atiende una cita de principio a fin y descarga la receta con marca DEMO.
+
+**Notas y desviaciones**
+
+- Pestaña **Expediente** en la ficha del paciente: historia clínica editable (médico y administración), línea de tiempo con consultas, citas, pagos y planes de seguimiento (las notas SOAP se despliegan) y bitácora de cambios (quién y cuándo).
+- Flujo de consulta en `/#/consulta/:citaId` (desde "Atender consulta" en la agenda): signos vitales con rangos validados, nota SOAP, diagnósticos con buscador CIE-10 de ejemplo y receta con medicamentos dinámicos. Muestra las alergias del paciente en rojo.
+- Al cerrar la consulta, la cita pasa a "Asistió" y se ofrece descargar la receta y crear un plan de seguimiento.
+- PDF con jsPDF (`src/lib/pdf.ts`), cargado bajo demanda; cada página lleva la marca de agua diagonal "DEMO, sin validez". El mismo módulo genera recibos y reportes para las etapas 7 y 8.
+- La ficha recuerda la pestaña abierta en la URL (`?tab=expediente`).
 
 ---
 

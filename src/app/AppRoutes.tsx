@@ -16,6 +16,9 @@ const PacientesLista = lazy(() =>
   import('@/features/pacientes/PacientesLista').then((m) => ({ default: m.PacientesLista })),
 )
 const Agenda = lazy(() => import('@/features/agenda/Agenda').then((m) => ({ default: m.Agenda })))
+const Consulta = lazy(() =>
+  import('@/features/consultas/Consulta').then((m) => ({ default: m.Consulta })),
+)
 const PaginaPaciente = lazy(() =>
   import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
 )
@@ -69,6 +72,14 @@ export function AppRoutes() {
           element={
             <Modulo modulo="pacientes">
               <PaginaPaciente />
+            </Modulo>
+          }
+        />
+        <Route
+          path="/consulta/:citaId"
+          element={
+            <Modulo modulo="agenda">
+              <Consulta />
             </Modulo>
           }
         />

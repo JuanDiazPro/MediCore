@@ -14,7 +14,7 @@ import {
   UserRound,
   Wallet,
 } from 'lucide-react'
-import { Link, useParams } from 'react-router'
+import { Link, useParams, useSearchParams } from 'react-router'
 
 import { Avatar } from '@/components/layout/Avatar'
 import { Cargando, ErrorCarga, Vacio } from '@/components/layout/Estados'
@@ -104,6 +104,8 @@ export function PacienteFicha({
   seguimiento?: (pacienteId: string) => ReactNode
 }) {
   const { id } = useParams()
+  const [params, setParams] = useSearchParams()
+  const pestana = params.get('tab') ?? 'datos'
   const usuario = useUsuario()
   const consulta = usePaciente(id)
   const { porId: medicos } = useMedicos()
@@ -158,7 +160,10 @@ export function PacienteFicha({
         )}
       </Card>
 
-      <Tabs defaultValue="datos">
+      <Tabs
+        value={pestana}
+        onValueChange={(v) => setParams(v === 'datos' ? {} : { tab: v }, { replace: true })}
+      >
         <TabsList>
           <TabsTrigger value="datos">
             <UserRound />
