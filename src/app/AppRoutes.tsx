@@ -19,6 +19,9 @@ const Agenda = lazy(() => import('@/features/agenda/Agenda').then((m) => ({ defa
 const Consulta = lazy(() =>
   import('@/features/consultas/Consulta').then((m) => ({ default: m.Consulta })),
 )
+const Seguimiento = lazy(() =>
+  import('@/features/seguimiento/Seguimiento').then((m) => ({ default: m.Seguimiento })),
+)
 const PaginaPaciente = lazy(() =>
   import('@/app/pages/PaginaPaciente').then((m) => ({ default: m.PaginaPaciente })),
 )
@@ -87,7 +90,7 @@ export function AppRoutes() {
           path="/seguimiento"
           element={
             <Modulo modulo="seguimiento">
-              <Proximamente titulo="Seguimiento" />
+              <Seguimiento />
             </Modulo>
           }
         />

@@ -14,7 +14,7 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 | 3   | Pacientes                                               | ✅     | main | 2026-11-17 |
 | 4   | Agenda de citas                                         | ✅     | main | 2026-11-17 |
 | 5   | Expediente clínico y consulta                           | ✅     | main | 2026-11-17 |
-| 6   | Seguimiento activo y recordatorios                      | ⬜     |      |            |
+| 6   | Seguimiento activo y recordatorios                      | ✅     | main | 2026-11-17 |
 | 7   | Caja y cobros                                           | ⬜     |      |            |
 | 8   | Tablero y reportes                                      | ⬜     |      |            |
 | 9   | Configuración, pulido y guion de demo                   | ⬜     |      |            |
@@ -182,15 +182,25 @@ Cada etapa se sube directo a `main` (sin ramas ni PR, por decisión del equipo) 
 
 **Tareas**
 
-- [ ] Vista de pacientes con control pendiente o vencido (planes de seguimiento).
-- [ ] Crear, editar y cerrar planes de tratamiento o seguimiento.
-- [ ] "Enviar recordatorio" simulado por WhatsApp, SMS o correo: vista previa del mensaje y notificación tipo toast.
-- [ ] Recordatorio masivo simulado para las citas de mañana.
-- [ ] Campañas simuladas (por ejemplo, "revisión anual") con segmentación básica.
-- [ ] Bandeja de mensajes enviados (historial simulado).
-- [ ] Pruebas de la lógica de vencimientos.
+- [x] Vista de pacientes con control pendiente o vencido (planes de seguimiento).
+- [x] Crear, editar y cerrar planes de tratamiento o seguimiento.
+- [x] "Enviar recordatorio" simulado por WhatsApp, SMS o correo: vista previa del mensaje y notificación tipo toast.
+- [x] Recordatorio masivo simulado para las citas de mañana.
+- [x] Campañas simuladas (por ejemplo, "revisión anual") con segmentación básica.
+- [x] Bandeja de mensajes enviados (historial simulado).
+- [x] Pruebas de la lógica de vencimientos.
 
 **Criterios de aceptación:** se identifican pacientes pendientes y se les "envía" un recordatorio que queda registrado.
+
+**Notas y desviaciones**
+
+- Módulo **Seguimiento** con indicadores (controles vencidos, que vencen esta semana y al corriente) y cuatro pestañas: pacientes por contactar, citas de mañana, campañas y bandeja.
+- Planes ordenados por prioridad (los más atrasados primero) con acciones: recordar, agendar, editar y cerrar. El médico solo ve los planes de sus pacientes.
+- "Enviar recordatorio" simulado por WhatsApp, SMS o correo, con texto editable, vista previa tipo chat y aviso en pantalla. Todo queda en la bandeja.
+- Recordatorio masivo para las citas de mañana (marca cada cita con "Recordatorio enviado").
+- Campañas con segmentos: todos, sin visita en 6 meses, crónicos, pediátricos y mujeres; muestra cuántos pacientes las recibirán y personaliza `{nombre}`. Solo administración y recepción las envían.
+- Pestaña "Seguimiento" en la ficha del paciente con sus planes y mensajes.
+- Las pestañas se acomodan en varias líneas en celular para que la activa siempre se vea.
 
 ---
 

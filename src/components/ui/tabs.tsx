@@ -9,7 +9,7 @@ function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimi
   return (
     <TabsPrimitive.List
       className={cn(
-        'flex w-full gap-1 overflow-x-auto rounded-full bg-white p-1 shadow-soft sm:w-fit',
+        'flex w-full flex-wrap gap-1 rounded-3xl bg-white p-1 shadow-soft sm:w-fit sm:rounded-full',
         className,
       )}
       {...props}
